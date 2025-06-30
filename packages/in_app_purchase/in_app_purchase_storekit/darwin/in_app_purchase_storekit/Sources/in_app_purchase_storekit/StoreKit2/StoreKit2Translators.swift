@@ -236,17 +236,33 @@ extension Transaction {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
 
-    return SK2TransactionMessage(
-      id: Int64(id),
-      originalId: Int64(originalID),
-      productId: productID,
-      purchaseDate: dateFormatter.string(from: purchaseDate),
-      expirationDate: expirationDate.map { dateFormatter.string(from: $0) },
-      purchasedQuantity: Int64(purchasedQuantity),
-      appAccountToken: appAccountToken?.uuidString,
-      restoring: receipt != nil,
-      receiptData: receipt,
-      jsonRepresentation: String(decoding: jsonRepresentation, as: UTF8.self)
-    )
+      if #available(iOS 17.0, *) {
+          return SK2TransactionMessage(
+            id: Int64(id),
+            originalId: Int64(originalID),
+            productId: productID,
+            purchaseDate: dateFormatter.string(from: purchaseDate),
+            expirationDate: expirationDate.map { dateFormatter.string(from: $0) },
+            purchasedQuantity: Int64(purchasedQuantity),
+            appAccountToken: appAccountToken?.uuidString,
+            restoring: receipt != nil,
+            receiptData: receipt,
+            jsonRepresentation: String(decoding: jsonRepresentation, as: UTF8.self),
+            purchaseReason: reason.rawValue
+          )
+      } else {
+          return SK2TransactionMessage(
+            id: Int64(id),
+            originalId: Int64(originalID),
+            productId: productID,
+            purchaseDate: dateFormatter.string(from: purchaseDate),
+            expirationDate: expirationDate.map { dateFormatter.string(from: $0) },
+            purchasedQuantity: Int64(purchasedQuantity),
+            appAccountToken: appAccountToken?.uuidString,
+            restoring: receipt != nil,
+            receiptData: receipt,
+            jsonRepresentation: String(decoding: jsonRepresentation, as: UTF8.self)
+          )
+      }
   }
 }
