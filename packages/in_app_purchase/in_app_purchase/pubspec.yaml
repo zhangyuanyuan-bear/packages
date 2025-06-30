@@ -3,6 +3,7 @@ description: A Flutter plugin for in-app purchases. Exposes APIs for making in-a
 repository: https://github.com/zhangyuanyuan-bear/packages.git/packages/in_app_purchase
 issue_tracker: https://github.com/flutter/flutter/issues?q=is%3Aissue+is%3Aopen+label%3A%22p%3A+in_app_purchase%22
 version: 3.2.3
+publish_to: 'none'  # This marks the package as not for publishing
 
 environment:
   sdk: ^3.6.0
@@ -21,9 +22,17 @@ flutter:
 dependencies:
   flutter:
     sdk: flutter
-  in_app_purchase_android: ^0.4.0
+#  in_app_purchase_android: ^0.4.0
   in_app_purchase_platform_interface: ^1.4.0
-  in_app_purchase_storekit: ^0.4.0
+  in_app_purchase_storekit:
+    git:
+      url: 'https://github.com/zhangyuanyuan-bear/packages.git'
+      path: 'packages/in_app_purchase/in_app_purchase_storekit'
+  in_app_purchase_android:
+    git:
+      url: 'https://github.com/zhangyuanyuan-bear/packages.git'
+      path: 'packages/in_app_purchase/in_app_purchase_android'
+
 
 dev_dependencies:
   flutter_test:
