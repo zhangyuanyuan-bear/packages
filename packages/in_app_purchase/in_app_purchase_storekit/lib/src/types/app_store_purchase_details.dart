@@ -82,12 +82,14 @@ class AppStorePurchaseDetails extends PurchaseDetails {
 /// AppStore, when using Storekit2
 class SK2PurchaseDetails extends PurchaseDetails {
   /// Creates new instance of [SK2PurchaseDetails]
-  SK2PurchaseDetails(
-      {required super.productID,
-      required super.purchaseID,
-      required super.verificationData,
-      required super.transactionDate,
-      required super.status});
+  SK2PurchaseDetails({
+    required super.productID,
+    required super.purchaseID,
+    required super.verificationData,
+    required super.transactionDate,
+    required super.status,
+    super.purchaseReason,
+  });
 
   @override
   bool get pendingCompletePurchase => status == PurchaseStatus.purchased;

@@ -172,18 +172,20 @@ class SK2ProductPurchaseOptionsMessage {
 }
 
 class SK2TransactionMessage {
-  SK2TransactionMessage(
-      {required this.id,
-      required this.originalId,
-      required this.productId,
-      required this.purchaseDate,
-      this.expirationDate,
-      this.purchasedQuantity = 1,
-      this.appAccountToken,
-      this.error,
-      this.receiptData,
-      this.jsonRepresentation,
-      this.restoring = false});
+  SK2TransactionMessage({
+    required this.id,
+    required this.originalId,
+    required this.productId,
+    required this.purchaseDate,
+    this.expirationDate,
+    this.purchasedQuantity = 1,
+    this.appAccountToken,
+    this.error,
+    this.receiptData,
+    this.jsonRepresentation,
+    this.restoring = false,
+    this.purchaseReason,
+  });
   final int id;
   final int originalId;
   final String productId;
@@ -195,11 +197,11 @@ class SK2TransactionMessage {
   final String? receiptData;
   final SK2ErrorMessage? error;
   final String? jsonRepresentation;
+  final String? purchaseReason;
 }
 
 class SK2ErrorMessage {
-  const SK2ErrorMessage(
-      {required this.code, required this.domain, required this.userInfo});
+  const SK2ErrorMessage({required this.code, required this.domain, required this.userInfo});
 
   final int code;
   final String domain;
@@ -219,8 +221,7 @@ abstract class InAppPurchase2API {
 
   // https://developer.apple.com/documentation/storekit/product/3791971-purchase
   @async
-  SK2ProductPurchaseResultMessage purchase(String id,
-      {SK2ProductPurchaseOptionsMessage? options});
+  SK2ProductPurchaseResultMessage purchase(String id, {SK2ProductPurchaseOptionsMessage? options});
 
   @async
   bool isWinBackOfferEligible(String productId, String offerId);

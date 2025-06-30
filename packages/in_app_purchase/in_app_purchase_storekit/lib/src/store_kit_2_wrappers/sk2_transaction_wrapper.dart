@@ -132,6 +132,7 @@ extension on SK2TransactionMessage {
       // Any failed transaction will simply not be returned.
       status: restoring ? PurchaseStatus.restored : PurchaseStatus.purchased,
       purchaseID: id.toString(),
+      purchaseReason: purchaseReason,
     );
   }
 }
@@ -146,8 +147,7 @@ class SK2TransactionObserverWrapper implements InAppPurchase2CallbackAPI {
 
   @override
   void onTransactionsUpdated(List<SK2TransactionMessage> newTransactions) {
-    transactionsCreatedController.add(newTransactions
-        .map((SK2TransactionMessage e) => e.convertToDetails())
-        .toList());
+    transactionsCreatedController
+        .add(newTransactions.map((SK2TransactionMessage e) => e.convertToDetails()).toList());
   }
 }
