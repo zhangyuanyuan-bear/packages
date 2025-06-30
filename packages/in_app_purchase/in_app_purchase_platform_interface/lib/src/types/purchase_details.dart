@@ -15,6 +15,7 @@ class PurchaseDetails {
     required this.verificationData,
     required this.transactionDate,
     required this.status,
+    this.purchaseReason,
   });
 
   /// A unique identifier of the purchase.
@@ -44,6 +45,9 @@ class PurchaseDetails {
   ///
   /// The value is `null` if [status] is not [PurchaseStatus.error].
   IAPError? error;
+
+  /// 订单原因， 购买还是续订
+  String? purchaseReason;
 
   /// The developer has to call [InAppPurchasePlatform.completePurchase] if the value is `true`
   /// and the product has been delivered to the user.
