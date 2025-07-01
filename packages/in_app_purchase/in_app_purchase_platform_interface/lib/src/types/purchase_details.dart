@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 import '../errors/in_app_purchase_error.dart';
+import 'purchase_sk2_detail.dart';
 import 'purchase_status.dart';
 import 'purchase_verification_data.dart';
 
@@ -15,7 +16,7 @@ class PurchaseDetails {
     required this.verificationData,
     required this.transactionDate,
     required this.status,
-    this.purchaseReason,
+    this.sk2Detail,
   });
 
   /// A unique identifier of the purchase.
@@ -46,8 +47,8 @@ class PurchaseDetails {
   /// The value is `null` if [status] is not [PurchaseStatus.error].
   IAPError? error;
 
-  /// 订单原因， 购买还是续订
-  String? purchaseReason;
+  /// sk2 api 特有的属性
+  PurchaseSK2Detail? sk2Detail;
 
   /// The developer has to call [InAppPurchasePlatform.completePurchase] if the value is `true`
   /// and the product has been delivered to the user.
