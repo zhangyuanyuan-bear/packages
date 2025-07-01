@@ -185,6 +185,7 @@ class SK2TransactionMessage {
     this.jsonRepresentation,
     this.restoring = false,
     this.purchaseReason,
+    this.originalTransactionId,
   });
   final int id;
   final int originalId;
@@ -198,6 +199,7 @@ class SK2TransactionMessage {
   final SK2ErrorMessage? error;
   final String? jsonRepresentation;
   final String? purchaseReason;
+  final String? originalTransactionId;
 }
 
 class SK2ErrorMessage {

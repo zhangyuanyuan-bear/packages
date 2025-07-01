@@ -132,7 +132,8 @@ extension on SK2TransactionMessage {
       // Any failed transaction will simply not be returned.
       status: restoring ? PurchaseStatus.restored : PurchaseStatus.purchased,
       purchaseID: id.toString(),
-      purchaseReason: purchaseReason,
+      sk2Detail:
+          PurchaseSK2Detail(originalTransactionId: '$originalId', purchaseReason: purchaseReason),
     );
   }
 }

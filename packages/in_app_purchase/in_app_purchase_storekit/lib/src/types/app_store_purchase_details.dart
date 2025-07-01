@@ -88,7 +88,7 @@ class SK2PurchaseDetails extends PurchaseDetails {
     required super.verificationData,
     required super.transactionDate,
     required super.status,
-    super.purchaseReason,
+    super.sk2Detail,
   });
 
   @override

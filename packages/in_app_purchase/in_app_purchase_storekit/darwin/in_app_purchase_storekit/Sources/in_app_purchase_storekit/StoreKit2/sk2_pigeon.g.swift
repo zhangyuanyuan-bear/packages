@@ -481,6 +481,7 @@ struct SK2TransactionMessage: Hashable {
   var error: SK2ErrorMessage? = nil
   var jsonRepresentation: String? = nil
   var purchaseReason: String? = nil
+  var originalTransactionId: String? = nil
 
 
   // swift-format-ignore: AlwaysUseLowerCamelCase
@@ -497,6 +498,7 @@ struct SK2TransactionMessage: Hashable {
     let error: SK2ErrorMessage? = nilOrValue(pigeonVar_list[9])
     let jsonRepresentation: String? = nilOrValue(pigeonVar_list[10])
     let purchaseReason: String? = nilOrValue(pigeonVar_list[11])
+    let originalTransactionId: String? = nilOrValue(pigeonVar_list[12])
 
     return SK2TransactionMessage(
       id: id,
@@ -510,7 +512,8 @@ struct SK2TransactionMessage: Hashable {
       receiptData: receiptData,
       error: error,
       jsonRepresentation: jsonRepresentation,
-      purchaseReason: purchaseReason
+      purchaseReason: purchaseReason,
+      originalTransactionId: originalTransactionId
     )
   }
   func toList() -> [Any?] {
@@ -527,6 +530,7 @@ struct SK2TransactionMessage: Hashable {
       error,
       jsonRepresentation,
       purchaseReason,
+      originalTransactionId,
     ]
   }
   static func == (lhs: SK2TransactionMessage, rhs: SK2TransactionMessage) -> Bool {

@@ -261,7 +261,8 @@ extension Transaction {
             appAccountToken: appAccountToken?.uuidString,
             restoring: receipt != nil,
             receiptData: receipt,
-            jsonRepresentation: String(decoding: jsonRepresentation, as: UTF8.self)
+            jsonRepresentation: String(decoding: jsonRepresentation, as: UTF8.self),
+            purchaseReason: reasonStringRepresentation
           )
       }
   }
