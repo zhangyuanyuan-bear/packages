@@ -6,5 +6,6 @@ export 'product_details.dart';
 export 'product_details_response.dart';
 export 'purchase_details.dart';
 export 'purchase_param.dart';
+export 'purchase_sk2_detail.dart';
 export 'purchase_status.dart';
 export 'purchase_verification_data.dart';
