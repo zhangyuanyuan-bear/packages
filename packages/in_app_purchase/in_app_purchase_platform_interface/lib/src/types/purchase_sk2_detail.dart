@@ -4,11 +4,16 @@ class PurchaseSK2Detail {
   PurchaseSK2Detail({
     this.originalTransactionId,
     this.purchaseReason,
+    this.originalTransactionDate,
   });
 
   /// original transaction id
   ///
   final String? originalTransactionId;
+
+  /// original transaction date
+  ///
+  final int? originalTransactionDate;
 
   /// 订单的原因
   /// purchase
