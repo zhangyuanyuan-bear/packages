@@ -173,9 +173,13 @@ class SK2ProductPurchaseOptionsMessage {
 
 class SK2TransactionMessage {
   SK2TransactionMessage({
+    // 交易订单 ID
     required this.id,
+    // 原始交易订单 ID
     required this.originalId,
+    // 商品 ID
     required this.productId,
+    // 交易订单时间
     required this.purchaseDate,
     this.expirationDate,
     this.purchasedQuantity = 1,
@@ -185,7 +189,7 @@ class SK2TransactionMessage {
     this.jsonRepresentation,
     this.restoring = false,
     this.purchaseReason,
-    this.originalTransactionId,
+    this.originalPurchaseDate,
   });
   final int id;
   final int originalId;
@@ -199,7 +203,7 @@ class SK2TransactionMessage {
   final SK2ErrorMessage? error;
   final String? jsonRepresentation;
   final String? purchaseReason;
-  final String? originalTransactionId;
+  final int? originalPurchaseDate;
 }
 
 class SK2ErrorMessage {

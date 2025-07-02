@@ -552,7 +552,7 @@ class SK2TransactionMessage {
     this.error,
     this.jsonRepresentation,
     this.purchaseReason,
-    this.originalTransactionId,
+    this.originalPurchaseDate,
   });
 
   int id;
@@ -579,7 +579,7 @@ class SK2TransactionMessage {
 
   String? purchaseReason;
 
-  String? originalTransactionId;
+  int? originalPurchaseDate;
 
   List<Object?> _toList() {
     return <Object?>[
@@ -595,7 +595,7 @@ class SK2TransactionMessage {
       error,
       jsonRepresentation,
       purchaseReason,
-      originalTransactionId,
+      originalPurchaseDate,
     ];
   }
 
@@ -617,7 +617,7 @@ class SK2TransactionMessage {
       error: result[9] as SK2ErrorMessage?,
       jsonRepresentation: result[10] as String?,
       purchaseReason: result[11] as String?,
-      originalTransactionId: result[12] as String?,
+      originalPurchaseDate: result[12] as int?,
     );
   }
 
