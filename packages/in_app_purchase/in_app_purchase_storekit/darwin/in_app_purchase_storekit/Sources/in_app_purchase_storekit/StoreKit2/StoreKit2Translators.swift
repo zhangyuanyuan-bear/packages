@@ -248,7 +248,8 @@ extension Transaction {
             restoring: receipt != nil,
             receiptData: receipt,
             jsonRepresentation: String(decoding: jsonRepresentation, as: UTF8.self),
-            purchaseReason: reason.rawValue
+            purchaseReason: reason.rawValue,
+            originalPurchaseDate: Int64(originalPurchaseDate.timeIntervalSince1970)
           )
       } else {
           return SK2TransactionMessage(
@@ -262,7 +263,8 @@ extension Transaction {
             restoring: receipt != nil,
             receiptData: receipt,
             jsonRepresentation: String(decoding: jsonRepresentation, as: UTF8.self),
-            purchaseReason: reasonStringRepresentation
+            purchaseReason: reasonStringRepresentation,
+            originalPurchaseDate: Int64(originalPurchaseDate.timeIntervalSince1970)
           )
       }
   }
