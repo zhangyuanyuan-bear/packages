@@ -68,8 +68,7 @@ class InAppPurchase implements InAppPurchasePlatformAdditionProvider {
   /// time. If you choose to have multiple subscription at the same time, you
   /// should be careful at the fact that each subscription will receive all the
   /// events after they start to listen.
-  Stream<List<PurchaseDetails>> get purchaseStream =>
-      InAppPurchasePlatform.instance.purchaseStream;
+  Stream<List<PurchaseDetails>> get purchaseStream => InAppPurchasePlatform.instance.purchaseStream;
 
   /// Returns `true` if the payment platform is ready and available.
   Future<bool> isAvailable() => InAppPurchasePlatform.instance.isAvailable();
@@ -209,6 +208,10 @@ class InAppPurchase implements InAppPurchasePlatformAdditionProvider {
       InAppPurchasePlatform.instance.restorePurchases(
         applicationUserName: applicationUserName,
       );
+
+  /// Store kit 2 restore  async await
+  Future<List<PurchaseDetails>> restoreSk2Purchases() =>
+      InAppPurchasePlatform.instance.restoreSk2Purchases();
 
   /// Returns the user's country.
   ///
