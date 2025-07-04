@@ -137,6 +137,8 @@ abstract class TestInAppPurchase2Api {
 
   Future<void> restorePurchases();
 
+  Future<List<SK2TransactionMessage>> restoreSk2Purchases();
+
   Future<String> countryCode();
 
   Future<void> sync();
@@ -334,6 +336,25 @@ abstract class TestInAppPurchase2Api {
           try {
             await api.restorePurchases();
             return wrapResponse(empty: true);
+          } on PlatformException catch (e) {
+            return wrapResponse(error: e);
+          }          catch (e) {
+            return wrapResponse(error: PlatformException(code: 'error', message: e.toString()));
+          }
+        });
+      }
+    }
+    {
+      final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+          'dev.flutter.pigeon.in_app_purchase_storekit.InAppPurchase2API.restoreSk2Purchases$messageChannelSuffix', pigeonChannelCodec,
+          binaryMessenger: binaryMessenger);
+      if (api == null) {
+        _testBinaryMessengerBinding!.defaultBinaryMessenger.setMockDecodedMessageHandler<Object?>(pigeonVar_channel, null);
+      } else {
+        _testBinaryMessengerBinding!.defaultBinaryMessenger.setMockDecodedMessageHandler<Object?>(pigeonVar_channel, (Object? message) async {
+          try {
+            final List<SK2TransactionMessage> output = await api.restoreSk2Purchases();
+            return <Object?>[output];
           } on PlatformException catch (e) {
             return wrapResponse(error: e);
           }          catch (e) {

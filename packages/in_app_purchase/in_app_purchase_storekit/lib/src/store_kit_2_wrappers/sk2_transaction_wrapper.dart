@@ -84,6 +84,14 @@ class SK2Transaction {
     return transactions;
   }
 
+  /// Store kit 2  restore 方法改成异步等待状态
+  static Future<List<PurchaseDetails>> restoreSk2Purchases() async {
+    final List<SK2TransactionMessage> msgs = await _hostApi.restoreSk2Purchases();
+    final List<PurchaseDetails> transactions =
+        msgs.map((SK2TransactionMessage e) => e.convertToDetails()).toList();
+    return transactions;
+  }
+
   /// Start listening to transactions.
   /// Call this as soon as you can your app to avoid missing transactions.
   static void startListeningToTransactions() {

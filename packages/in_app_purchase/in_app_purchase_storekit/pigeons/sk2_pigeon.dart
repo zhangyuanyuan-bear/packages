@@ -246,6 +246,9 @@ abstract class InAppPurchase2API {
   void restorePurchases();
 
   @async
+  List<SK2TransactionMessage> restoreSk2Purchases();
+
+  @async
   String countryCode();
 
   @async

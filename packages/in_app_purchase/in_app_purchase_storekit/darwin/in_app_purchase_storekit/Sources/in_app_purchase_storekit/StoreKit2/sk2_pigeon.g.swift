@@ -711,6 +711,7 @@ protocol InAppPurchase2API {
   func startListeningToTransactions() throws
   func stopListeningToTransactions() throws
   func restorePurchases(completion: @escaping (Result<Void, Error>) -> Void)
+  func restoreSk2Purchases(completion: @escaping (Result<[SK2TransactionMessage], Error>) -> Void)
   func countryCode(completion: @escaping (Result<String, Error>) -> Void)
   func sync(completion: @escaping (Result<Void, Error>) -> Void)
 }
@@ -859,6 +860,21 @@ class InAppPurchase2APISetup {
       }
     } else {
       restorePurchasesChannel.setMessageHandler(nil)
+    }
+    let restoreSk2PurchasesChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.in_app_purchase_storekit.InAppPurchase2API.restoreSk2Purchases\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
+    if let api = api {
+      restoreSk2PurchasesChannel.setMessageHandler { _, reply in
+        api.restoreSk2Purchases { result in
+          switch result {
+          case .success(let res):
+            reply(wrapResult(res))
+          case .failure(let error):
+            reply(wrapError(error))
+          }
+        }
+      }
+    } else {
+      restoreSk2PurchasesChannel.setMessageHandler(nil)
     }
     let countryCodeChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.in_app_purchase_storekit.InAppPurchase2API.countryCode\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
     if let api = api {
