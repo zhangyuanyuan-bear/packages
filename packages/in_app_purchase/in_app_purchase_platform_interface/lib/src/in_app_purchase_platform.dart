@@ -62,8 +62,7 @@ abstract class InAppPurchasePlatform extends PlatformInterface {
       throw UnimplementedError('purchaseStream has not been implemented.');
 
   /// Returns `true` if the payment platform is ready and available.
-  Future<bool> isAvailable() =>
-      throw UnimplementedError('isAvailable() has not been implemented.');
+  Future<bool> isAvailable() => throw UnimplementedError('isAvailable() has not been implemented.');
 
   /// Query product details for the given set of IDs.
   ///
@@ -71,8 +70,7 @@ abstract class InAppPurchasePlatform extends PlatformInterface {
   /// Connect](https://appstoreconnect.apple.com/) for iOS and [Google Play
   /// Console](https://play.google.com/) for Android.
   Future<ProductDetailsResponse> queryProductDetails(Set<String> identifiers) =>
-      throw UnimplementedError(
-          'queryProductDetails() had not been implemented.');
+      throw UnimplementedError('queryProductDetails() had not been implemented.');
 
   /// Buy a non consumable product or subscription.
   ///
@@ -194,6 +192,11 @@ abstract class InAppPurchasePlatform extends PlatformInterface {
   ///    [PurchaseDetails.verificationData].
   Future<void> restorePurchases({String? applicationUserName}) =>
       throw UnimplementedError('restorePurchases() has not been implemented.');
+
+  /// Store kit 2 restore 是一个异步等待逻辑，不是监听回调的逻辑，所以需要异步等待返回
+  Future<List<PurchaseDetails>> restoreSk2Purchases() {
+    throw UnimplementedError('restoreSk2Purchases() has not been implemented.');
+  }
 
   /// Returns the user's country.
   ///
