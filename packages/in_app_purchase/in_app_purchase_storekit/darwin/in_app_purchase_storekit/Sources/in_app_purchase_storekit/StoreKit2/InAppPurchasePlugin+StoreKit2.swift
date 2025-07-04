@@ -200,25 +200,44 @@ extension InAppPurchasePlugin: InAppPurchase2API {
     
     /// Store kit2 restore 异步等待
     
-  func restoreSk2Purchases(
-      completion: @escaping (Result<[SK2TransactionMessage], Error>) -> Void
-  ) async {
-        
-        var allTransactions: [SK2TransactionMessage] = []
-        
-        // 先收集所有交易
-        for await verification in Transaction.currentEntitlements {
-            switch verification {
-            case .verified(let transaction):
-                allTransactions.append(transaction.convertToPigeon(receipt: nil))
-            case .unverified(_, let error):
-                print("恢复购买验证失败: \(error.localizedDescription)")
+//  func restoreSk2Purchases(
+//      completion: @escaping (Result<[SK2TransactionMessage], Error>) -> Void
+//  ) async {
+//        
+//        var allTransactions: [SK2TransactionMessage] = []
+//        
+//        // 先收集所有交易
+//        for await verification in Transaction.currentEntitlements {
+//            switch verification {
+//            case .verified(let transaction):
+//                allTransactions.append(transaction.convertToPigeon(receipt: nil))
+//            case .unverified(_, let error):
+//                print("恢复购买验证失败: \(error.localizedDescription)")
+//            }
+//        }
+//      
+//       completion(.success(allTransactions))
+//      
+//    }
+    
+    func restoreSk2Purchases(completion: @escaping (Result<[SK2TransactionMessage], any Error>) -> Void) {
+        Task {
+            var allTransactions: [SK2TransactionMessage] = []
+            
+            // 先收集所有交易
+            for await verification in Transaction.currentEntitlements {
+                switch verification {
+                case .verified(let transaction):
+                    allTransactions.append(transaction.convertToPigeon(receipt: nil))
+                case .unverified(_, let error):
+                    print("恢复购买验证失败: \(error.localizedDescription)")
+                }
             }
+          
+           completion(.success(allTransactions))
         }
-      
-       completion(.success(allTransactions))
-      
     }
+    
 
 
   func restorePurchases(completion: @escaping (Result<Void, Error>) -> Void) {
